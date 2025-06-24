@@ -9,20 +9,20 @@ export default function Contact() {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="px-4 py-14 max-w-4xl mx-auto"
+      className="px-4 sm:px-6 lg:px-8 py-14 max-w-5xl mx-auto"
     >
-      <h2 className="text-4xl md:text-5xl font-extrabold mb-8 text-center text-blue-700">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-8 text-center text-blue-700">
         Contact Me
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* Left Side: Contact Info */}
-        <div className="space-y-6">
-          <p className="text-lg text-gray-700">
+        <div className="space-y-6 text-base sm:text-lg">
+          <p className="text-gray-700">
             I'm open to opportunities, collaborations, or just a friendly chat. Feel free to reach out!
           </p>
 
-          <div className="space-y-3 text-gray-800">
+          <div className="space-y-4 text-gray-800">
             <div className="flex items-center gap-3">
               <Mail className="text-blue-600" />
               <a href="mailto:juliopurba647@mhs.unimed.ac.id" className="hover:underline">
@@ -56,7 +56,7 @@ export default function Contact() {
 
         {/* Right Side: Contact Form (optional) */}
         <form
-          action="https://formspree.io/f/mvgrvpjw" // Ganti dengan Formspree / endpoint sesuai
+          action="https://formspree.io/f/mvgrvpjw"
           method="POST"
           className="space-y-4 bg-white shadow-md rounded-2xl p-6"
         >

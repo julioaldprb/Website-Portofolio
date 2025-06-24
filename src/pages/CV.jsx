@@ -1,3 +1,4 @@
+// File: src/pages/CV.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FileDown } from 'lucide-react';
@@ -8,14 +9,14 @@ export default function CV() {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="px-4 py-14 max-w-5xl mx-auto text-center"
+      className="px-4 sm:px-6 lg:px-8 py-14 max-w-5xl mx-auto text-center"
     >
-      <h2 className="text-4xl md:text-5xl font-extrabold mb-10 text-blue-700 tracking-tight">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-10 text-blue-700 tracking-tight">
         Curriculum Vitae
       </h2>
 
       {/* PDF viewer using embed for cleaner display */}
-      <div className="w-full h-[85vh] border rounded-2xl shadow-lg overflow-hidden">
+      <div className="w-full h-[80vh] border rounded-2xl shadow-lg overflow-hidden">
         <embed
           src="/JulioPurbaCV.pdf#toolbar=0&navpanes=0&scrollbar=0"
           type="application/pdf"
