@@ -55,13 +55,9 @@ export default function Header() {
         </button>
       </div>
 
-      {/* mobile drawer */}
-      <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 md:hidden ${
-          open ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        <div className="px-4 py-6 space-y-6">
+      {/* mobile nav below header */}
+      <nav className={`md:hidden bg-white shadow-inner ${open ? 'block' : 'hidden'}`}>
+        <div className="container mx-auto px-4 py-4 flex flex-col space-y-2">
           {links.map(({ to, label }) => (
             <NavLink
               key={to}
@@ -77,7 +73,7 @@ export default function Header() {
             </NavLink>
           ))}
         </div>
-      </div>
+      </nav>
     </header>
   )
 }
