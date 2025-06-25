@@ -1,8 +1,7 @@
-// File: src/components/Header.jsx
-import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import LogoProfile from '../assets/logoprofile.png';
+import React, { useState, useEffect } from 'react'
+import { NavLink, Link } from 'react-router-dom'
+import { Menu, X } from 'lucide-react'
+import LogoProfile from '../assets/logoprofile.png'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -10,26 +9,34 @@ const links = [
   { to: '/projects', label: 'Projects' },
   { to: '/cv', label: 'CV' },
   { to: '/contact', label: 'Contact' },
-];
+]
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
+
+  // Close mobile menu on resize above md
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setOpen(false)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   return (
-    <header className="relative w-full bg-white shadow-md">
-      {/* Sticky Header Bar */}
-      <div className="sticky top-0 z-50 flex items-center justify-between px-4 py-3">
-        {/* Logo + Name */}
-        <Link to="/" className="flex items-center gap-2">
+    <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-md">
+      <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
+        {/* Logo & Name */}
+        <Link to="/" className="flex items-center gap-2 flex-shrink-0">
           <img
             src={LogoProfile}
-            alt="Logo Profile"
+            alt="Logo"
             className="w-10 h-10 rounded-full object-cover"
           />
-          <span className="text-lg font-bold text-gray-800">Julio Purba</span>
+          <span className="text-lg font-bold text-gray-800 truncate">Julio Purba</span>
         </Link>
 
-        {/* Desktop Nav (≥md) */}
+        {/* Desktop Nav */}
         <nav className="hidden md:flex space-x-6">
           {links.map(({ to, label }) => (
             <NavLink
@@ -37,9 +44,7 @@ export default function Header() {
               to={to}
               className={({ isActive }) =>
                 `font-medium transition-colors ${
-                  isActive
-                    ? 'text-blue-600'
-                    : 'text-gray-700 hover:text-blue-600'
+                  isActive ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
                 }`
               }
             >
@@ -50,29 +55,28 @@ export default function Header() {
 
         {/* Mobile Hamburger */}
         <button
-          className="md:hidden p-2 text-gray-700 hover:text-blue-600"
           onClick={() => setOpen(o => !o)}
+          className="md:hidden p-2 text-gray-700 hover:text-blue-600"
           aria-label="Toggle menu"
         >
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Dropdown (absolute, auto-height) */}
-      <nav
-        className={`absolute inset-x-0 top-[56px] z-40 bg-white shadow-md transform transition-transform duration-200 ease-in-out ${
-          open ? 'translate-y-0' : '-translate-y-full'
+      {/* Mobile Dropdown */}
+      <div
+        className={`md:hidden bg-white shadow-inner overflow-hidden transition-max-h duration-300 ease-in-out border-t border-gray-100 ${
+          open ? 'max-h-60' : 'max-h-0'
         }`}
-        onClick={() => setOpen(false)}
       >
-        <div className="px-4 py-4 flex flex-col space-y-1">
+        <nav className="flex flex-col px-4 py-2 space-y-1">
           {links.map(({ to, label }) => (
             <NavLink
               key={to}
               to={to}
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `block px-3 py-2 rounded-md font-medium ${
+                `block px-3 py-2 rounded-md font-medium transition-colors ${
                   isActive
                     ? 'bg-blue-100 text-blue-600'
                     : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
@@ -82,8 +86,8 @@ export default function Header() {
               {label}
             </NavLink>
           ))}
-        </div>
-      </nav>
+        </nav>
+      </div>
     </header>
-  );
+  )
 }
