@@ -13,17 +13,17 @@ const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 export default function Home() {
   return (
     <motion.section
-      className="relative min-h-screen flex flex-col items-center text-center space-y-6 px-4 sm:px-6 lg:px-8"
+      className="relative min-h-screen flex flex-col items-center text-center space-y-6 pt-24 pb-12"
       initial="hidden"
       animate="show"
       variants={container}
     >
-      {/* Full-screen radial gradient background, extended beyond top to avoid clipping */}
-      <div className="absolute inset-0 -z-10 pointer-events-none overflow-visible">
+      {/* Full-screen radial gradient background */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
         <div
-          className="absolute w-[150%] h-[150%] left-[-25%] top-[-25%] rounded-full"
+          className="w-full h-full"
           style={{
-            background: 'radial-gradient(circle at center, rgba(191,219,254,0.6), rgba(255,255,255,0.9) 70%, transparent 100%)',
+            background: 'radial-gradient(circle at 50% 40%, rgba(191,219,254,0.6), rgba(255,255,255,0.9) 70%, transparent 100%)',
           }}
         />
       </div>
@@ -45,16 +45,13 @@ export default function Home() {
       </motion.h1>
       <motion.p
         variants={item}
-        className="text-sm sm:text-base md:text-lg text-gray-600 max-w-md sm:max-w-lg"
+        className="text-sm sm:text-base md:text-lg text-gray-600 max-w-md sm:max-w-lg mx-auto"
       >
         Universitas Negeri Medan (TIK Education) · Machine Learning Engineer (Laskar AI) · Web & UI/UX Enthusiast (GDGoC USU) · Educator · Editor · Junior Programmer
       </motion.p>
 
       {/* CTA Buttons */}
-      <motion.div
-        variants={item}
-        className="flex flex-col sm:flex-row gap-3 sm:gap-4"
-      >
+      <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
         <a
           href="https://drive.google.com/file/d/11njhIo-E52CBLRHtCjkOdpN3NpYzV9Jk/view?usp=sharing"
           className="px-5 py-2 text-sm sm:text-base rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
@@ -70,10 +67,7 @@ export default function Home() {
       </motion.div>
 
       {/* Social Icons */}
-      <motion.div
-        variants={item}
-        className="flex items-center gap-6 pt-3 text-gray-600 text-lg sm:text-xl"
-      >
+      <motion.div variants={item} className="flex items-center gap-6 pt-3 text-gray-600 text-lg sm:text-xl">
         <a href="https://github.com/julioaldprb" target="_blank" rel="noreferrer">
           <Github size={26} className="hover:text-blue-600" />
         </a>

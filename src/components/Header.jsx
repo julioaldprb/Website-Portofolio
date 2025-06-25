@@ -1,3 +1,4 @@
+// File: src/components/Header.jsx
 import React, { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
@@ -25,7 +26,7 @@ export default function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-md">
-      <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
         {/* Logo & Name */}
         <Link to="/" className="flex items-center gap-2 flex-shrink-0">
           <img
@@ -61,32 +62,30 @@ export default function Header() {
         >
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
-      </div>
 
-      {/* Mobile Dropdown */}
-      <div
-        className={`md:hidden bg-white shadow-inner overflow-hidden transition-max-h duration-300 ease-in-out border-t border-gray-100 ${
-          open ? 'max-h-60' : 'max-h-0'
-        }`}
-      >
-        <nav className="flex flex-col px-4 py-2 space-y-1">
-          {links.map(({ to, label }) => (
-            <NavLink
-              key={to}
-              to={to}
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `block px-3 py-2 rounded-md font-medium transition-colors ${
-                  isActive
-                    ? 'bg-blue-100 text-blue-600'
-                    : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
-                }`
-              }
-            >
-              {label}
-            </NavLink>
-          ))}
-        </nav>
+        {/* Mobile Dropdown (absolute under button) */}
+        {open && (
+          <div className="absolute top-full left-1/2 mt-2 w-11/12 max-w-xs bg-white shadow-lg rounded-md border border-gray-200 transform -translate-x-1/2">
+            <nav className="flex flex-col p-2">
+              {links.map(({ to, label }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  onClick={() => setOpen(false)}
+                  className={({ isActive }) =>
+                    `block px-3 py-2 rounded-md font-medium transition-colors ${
+                      isActive
+                        ? 'bg-blue-100 text-blue-600'
+                        : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
+                    }`
+                  }
+                >
+                  {label}
+                </NavLink>
+              ))}
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   )
