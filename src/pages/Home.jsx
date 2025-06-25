@@ -13,19 +13,14 @@ const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 export default function Home() {
   return (
     <motion.section
-      className="relative min-h-screen flex flex-col items-center text-center space-y-6 pt-24 pb-12"
+      className="relative min-h-screen flex flex-col items-center text-center space-y-6 pt-24 pb-12 overflow-hidden"
       initial="hidden"
       animate="show"
       variants={container}
     >
-      {/* Full-screen radial gradient background */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div
-          className="w-full h-full"
-          style={{
-            background: 'radial-gradient(circle at 50% 40%, rgba(191,219,254,0.6), rgba(255,255,255,0.9) 70%, transparent 100%)',
-          }}
-        />
+      {/* Full-screen gradient background fading into white edges */}
+      <div className="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-r from-white via-blue-100/60 to-white">
+        <div className="w-full h-full bg-gradient-to-b from-transparent to-white opacity-80" />
       </div>
 
       {/* Avatar */}

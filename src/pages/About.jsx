@@ -84,10 +84,10 @@ export default function About() {
       animate="visible"
       variants={sectionVariant}
       transition={{ duration: 0.5 }}
-      className="space-y-8 px-4 sm:px-6 lg:px-8"
+      className="pt-20 space-y-8 px-4 sm:px-6 lg:px-8"
     >
       <motion.section variants={sectionVariant} transition={{ delay: 0.2 }}>
-        <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 text-center text-blue-700">
+        <h2 className="text-4xl md:text-5xl font-extrabold mb-12 text-center text-blue-700 tracking-tight">
           About Me
         </h2>
         <p className="text-gray-700 leading-relaxed text-base sm:text-lg">
