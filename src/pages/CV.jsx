@@ -1,4 +1,3 @@
-// File: src/pages/CV.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FileDown } from 'lucide-react';
@@ -15,21 +14,21 @@ export default function CV() {
         Curriculum Vitae
       </h2>
 
-      {/* PDF viewer using embed for cleaner display */}
-      <div className="w-full h-[80vh] border rounded-2xl shadow-lg overflow-hidden">
+      {/* Responsive PDF Viewer */}
+      <div className="w-full max-h-[75vh] sm:max-h-[80vh] border rounded-2xl shadow-lg overflow-hidden">
         <embed
           src="/JulioPurbaCV.pdf#toolbar=0&navpanes=0&scrollbar=0"
           type="application/pdf"
-          className="w-full h-full"
+          className="w-full h-[75vh] sm:h-[80vh]"
         />
       </div>
 
-      {/* Download button */}
+      {/* Download Button */}
       <div className="mt-10">
         <a
           href="/JulioPurbaCV.pdf"
           download
-          className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white text-sm sm:text-base rounded-full font-medium hover:bg-blue-700 transition"
         >
           <FileDown size={20} /> Download PDF
         </a>
