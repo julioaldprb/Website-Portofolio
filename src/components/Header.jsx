@@ -16,27 +16,30 @@ export default function Header() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-md">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
-        {/* Logo + Title */}
+    <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-md h-16">
+      <div className="max-w-7xl mx-auto flex items-center justify-between h-full px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
           <img
             src={LogoProfile}
-            alt="Logo Profile"
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
+            alt="Logo"
+            className="w-8 h-8 rounded-full object-cover"
           />
-          <span className="text-lg sm:text-xl font-bold text-gray-800">Julio Purba</span>
+          <span className="hidden sm:inline text-lg font-bold text-gray-800">
+            Julio Purba
+          </span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex space-x-6 text-gray-700">
+        {/* Desktop */}
+        <nav className="hidden lg:flex space-x-6">
           {links.map(({ to, label }) => (
             <NavLink
               key={to}
               to={to}
               className={({ isActive }) =>
-                `font-medium hover:text-blue-600 transition-colors ${
-                  isActive ? 'text-blue-600' : ''
+                `font-medium transition-colors ${
+                  isActive
+                  ? 'text-blue-600'
+                  : 'text-gray-700 hover:text-blue-600'
                 }`
               }
             >
@@ -45,31 +48,33 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Mobile Hamburger */}
+        {/* Mobile toggle */}
         <button
-          onClick={() => setOpen(!open)}
+          onClick={() => setOpen(o => !o)}
           className="lg:hidden p-2 text-gray-700 hover:text-blue-600"
-          aria-label="Toggle menu"
+          aria-label="Menu"
         >
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Drawer (overlay) */}
+      {/* Mobile drawer */}
       <nav
-        className={`lg:hidden absolute inset-x-0 top-full bg-white border-t border-gray-100 shadow-lg transform transition-transform duration-200 z-40 ${
+        className={`lg:hidden bg-white border-t border-gray-100 shadow-inner transform transition-transform duration-200 ${
           open ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
-        <div className="px-4 py-4 flex flex-col space-y-1">
+        <div className="max-w-7xl mx-auto px-4 py-2 flex flex-col space-y-1">
           {links.map(({ to, label }) => (
             <NavLink
               key={to}
               to={to}
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `block px-3 py-2 rounded-lg font-medium hover:bg-blue-50 hover:text-blue-600 transition-colors ${
-                  isActive ? 'bg-blue-100 text-blue-600' : 'text-gray-700'
+                `block px-3 py-2 rounded-md font-medium ${
+                  isActive
+                  ? 'bg-blue-100 text-blue-600'
+                  : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
                 }`
               }
             >
