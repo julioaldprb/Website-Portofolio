@@ -1,3 +1,4 @@
+// File: src/pages/Home.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail } from 'lucide-react';
@@ -5,27 +6,28 @@ import ProfilePic from '../assets/profile.jpg';
 
 const container = {
   hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
+  show: { opacity: 1, transition: { staggerChildren: 0.15 } },
 };
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
+const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 
 export default function Home() {
   return (
     <motion.section
-      className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] text-center space-y-6 px-4 sm:px-6 lg:px-8 pt-8"
+      className="relative min-h-screen flex flex-col items-center text-center space-y-6 px-4 sm:px-6 lg:px-8"
       initial="hidden"
       animate="show"
       variants={container}
     >
+      {/* Full-screen radial gradient background, extended beyond top to avoid clipping */}
+      <div className="absolute inset-0 -z-10 pointer-events-none overflow-visible">
+        <div
+          className="absolute w-[150%] h-[150%] left-[-25%] top-[-25%] rounded-full"
+          style={{
+            background: 'radial-gradient(circle at center, rgba(191,219,254,0.6), rgba(255,255,255,0.9) 70%, transparent 100%)',
+          }}
+        />
+      </div>
+
       {/* Avatar */}
       <motion.img
         variants={item}
@@ -37,7 +39,7 @@ export default function Home() {
       {/* Name & Title */}
       <motion.h1
         variants={item}
-        className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight text-gray-800"
+        className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-gray-800"
       >
         Julio Aldrin Purba
       </motion.h1>
@@ -45,13 +47,13 @@ export default function Home() {
         variants={item}
         className="text-sm sm:text-base md:text-lg text-gray-600 max-w-md sm:max-w-lg"
       >
-        Machine Learning Engineer (Laskar AI) · Web & UI/UX Enthusiast (GDGoC USU) · Educator. Editor. Junior Programmer
+        Universitas Negeri Medan (TIK Education) · Machine Learning Engineer (Laskar AI) · Web & UI/UX Enthusiast (GDGoC USU) · Educator · Editor · Junior Programmer
       </motion.p>
 
       {/* CTA Buttons */}
       <motion.div
         variants={item}
-        className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4"
+        className="flex flex-col sm:flex-row gap-3 sm:gap-4"
       >
         <a
           href="https://drive.google.com/file/d/11njhIo-E52CBLRHtCjkOdpN3NpYzV9Jk/view?usp=sharing"
@@ -72,25 +74,19 @@ export default function Home() {
         variants={item}
         className="flex items-center gap-6 pt-3 text-gray-600 text-lg sm:text-xl"
       >
-        <a href="https://github.com/julioaldprb" target="_blank" rel="noreferrer" className="hover:text-blue-600">
-          <Github size={26} />
+        <a href="https://github.com/julioaldprb" target="_blank" rel="noreferrer">
+          <Github size={26} className="hover:text-blue-600" />
         </a>
-        <a href="https://www.linkedin.com/in/juliopurba/" target="_blank" rel="noreferrer" className="hover:text-blue-600">
-          <Linkedin size={26} />
+        <a href="https://www.linkedin.com/in/juliopurba/" target="_blank" rel="noreferrer">
+          <Linkedin size={26} className="hover:text-blue-600" />
         </a>
         <a
           href="mailto:juliopurba647@mhs.unimed.ac.id?subject=Hello%20Julio"
-          className="hover:text-blue-600"
           title="Email Julio"
         >
-          <Mail size={26} />
+          <Mail size={26} className="hover:text-blue-600" />
         </a>
       </motion.div>
-
-      {/* Decorative background */}
-      <div className="absolute inset-0 -z-10 flex justify-center overflow-hidden pointer-events-none">
-        <div className="w-[60rem] h-[60rem] rounded-full bg-blue-200/40 blur-3xl" />
-      </div>
     </motion.section>
   );
 }
