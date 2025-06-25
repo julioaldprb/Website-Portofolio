@@ -1,5 +1,5 @@
 // File: src/components/Header.jsx
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import LogoProfile from '../assets/logoprofile.png'
@@ -17,69 +17,61 @@ export default function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-md h-16">
-      <div className="max-w-7xl mx-auto flex items-center justify-between h-full px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto h-16 flex items-center justify-between px-4 sm:px-6 lg:px-8">
+        {/* Logo + Name */}
         <Link to="/" className="flex items-center gap-2">
           <img
             src={LogoProfile}
-            alt="Logo"
-            className="w-8 h-8 rounded-full object-cover"
+            alt="Logo Profile"
+            className="w-10 h-10 rounded-full object-cover"
           />
-          <span className="hidden sm:inline text-lg font-bold text-gray-800">
-            Julio Purba
-          </span>
+          <span className="text-lg font-bold text-gray-800">Julio Purba</span>
         </Link>
 
-        {/* Desktop */}
-        <nav className="hidden lg:flex space-x-6">
-          {links.map(({ to, label }) => (
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex space-x-6">
+          {links.map(({to,label})=>(
             <NavLink
               key={to}
               to={to}
-              className={({ isActive }) =>
+              className={({isActive})=>
                 `font-medium transition-colors ${
-                  isActive
-                  ? 'text-blue-600'
-                  : 'text-gray-700 hover:text-blue-600'
+                  isActive ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
                 }`
               }
-            >
-              {label}
-            </NavLink>
+            >{label}</NavLink>
           ))}
         </nav>
 
-        {/* Mobile toggle */}
+        {/* Mobile Hamburger */}
         <button
-          onClick={() => setOpen(o => !o)}
-          className="lg:hidden p-2 text-gray-700 hover:text-blue-600"
-          aria-label="Menu"
+          className="md:hidden p-2 text-gray-700"
+          onClick={()=>setOpen(o=>!o)}
         >
-          {open ? <X size={24} /> : <Menu size={24} />}
+          {open ? <X size={24}/> : <Menu size={24}/>}
         </button>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile Drawer */}
       <nav
-        className={`lg:hidden bg-white border-t border-gray-100 shadow-inner transform transition-transform duration-200 ${
+        className={`md:hidden bg-white shadow-inner transition-transform ${
           open ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 py-2 flex flex-col space-y-1">
-          {links.map(({ to, label }) => (
+        <div className="px-4 py-2 flex flex-col space-y-1">
+          {links.map(({to,label})=>(
             <NavLink
               key={to}
               to={to}
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `block px-3 py-2 rounded-md font-medium ${
+              onClick={()=>setOpen(false)}
+              className={({isActive})=>
+                `block px-3 py-2 rounded-lg font-medium ${
                   isActive
-                  ? 'bg-blue-100 text-blue-600'
-                  : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
+                    ? 'bg-blue-100 text-blue-600'
+                    : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
                 }`
               }
-            >
-              {label}
-            </NavLink>
+            >{label}</NavLink>
           ))}
         </div>
       </nav>
