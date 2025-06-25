@@ -1,3 +1,4 @@
+// File: src/pages/Home.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail } from 'lucide-react';
@@ -21,7 +22,7 @@ const item = {
 export default function Home() {
   return (
     <motion.section
-      className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] text-center space-y-6 px-4 sm:px-6 lg:px-8 pt-8"
+      className="relative flex flex-col items-center justify-center min-h-[calc(100vh-5rem)] pt-20 text-center space-y-6 px-4 sm:px-6 lg:px-8"
       initial="hidden"
       animate="show"
       variants={container}
